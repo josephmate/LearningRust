@@ -1,2 +1,4 @@
 *~
 *.swp
+Cargo.lock
+*/target/
