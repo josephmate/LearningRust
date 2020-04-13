@@ -1,10 +1,3 @@
-*~
-*.swp
-Cargo.lock
-*/*/target/
-*.exe
-*.pdb
-
 /target
 **/*.rs.bk
 Cargo.lock
@@ -13,4 +6,3 @@ pkg/
 wasm-pack.log
 *~
 *.swp
-~
