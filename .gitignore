@@ -1,6 +1,6 @@
 *~
 *.swp
 Cargo.lock
-*/target/
+*/*/target/
 *.exe
 *.pdb
