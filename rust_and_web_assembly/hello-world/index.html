@@ -16,7 +16,7 @@
       //
       // Note that the name `wasm_bindgen` can be configured with the
       // `--no-modules-global` CLI flag
-      const { add } = wasm_bindgen;
+      const { greet } = wasm_bindgen;
 
       async function run() {
         await wasm_bindgen('./pkg/hello_world_bg.wasm');
@@ -24,7 +24,11 @@
         greet();
       }
 
-      run();
+      function loaded() {
+        greet();
+      }
+
+      run().then(loaded);
     </script>
     <p>Hello from html!</p>
   </body>
