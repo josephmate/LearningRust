@@ -9,30 +9,20 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern {
-    fn alert(s: &str);
+pub struct Renderer {
+    count: u32
 }
 
 #[wasm_bindgen]
-pub fn greet() {
-    alert("Hello world!");
-}
-
-// Called when the wasm module is instantiated
-// Example appends <p>Hello from Rust!</p> to the body.
-#[wasm_bindgen(start)]
-pub fn main() -> Result<(), JsValue> {
-    // Use `web_sys`'s global `window` function to get a handle on the global
-    // window object.
-    let window = web_sys::window().expect("no global `window` exists");
-    let document = window.document().expect("should have a document on window");
-    let body = document.body().expect("document should have a body");
-
-    // Manufacture the element we're gonna append
-    let val = document.create_element("p")?;
-    val.set_inner_html("Hello from Rust!");
-	
-    body.append_child(&val)?;
-
-    Ok(())
+impl Renderer {
+    pub fn new() -> Renderer {
+        Renderer {
+            count: 0,
+        }
+    }
+    
+    pub fn render(&mut self) -> u32 {
+        self.count = self.count + 1;
+        self.count
+    }
 }

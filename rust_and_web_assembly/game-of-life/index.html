@@ -16,20 +16,26 @@
       //
       // Note that the name `wasm_bindgen` can be configured with the
       // `--no-modules-global` CLI flag
-      const { greet } = wasm_bindgen;
+      const { Renderer } = wasm_bindgen;
 
       async function run() {
         await wasm_bindgen('./pkg/game_of_life_bg.wasm');
-      
-        greet();
       }
 
       function loaded() {
-        greet();
+        const pre = document.getElementById("game-of-life-canvas");
+        const renderer = Renderer.new();
+
+        const renderLoop = () => {
+          pre.textContent = renderer.render();
+
+          requestAnimationFrame(renderLoop);
+        };
+        requestAnimationFrame(renderLoop);
       }
 
       run().then(loaded);
     </script>
-    <p>Hello from html!</p>
+    <pre id="game-of-life-canvas"></pre>
   </body>
 </html>
