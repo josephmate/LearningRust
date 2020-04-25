@@ -1,5 +1,5 @@
 [package]
-name = "game-of-life"
+name = "basic-render-loop"
 version = "0.1.0"
 authors = ["Joseph Mate <mate.joseph@gmail.com>"]
 edition = "2018"
