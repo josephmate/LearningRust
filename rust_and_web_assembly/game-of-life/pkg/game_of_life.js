@@ -18,6 +18,14 @@ let wasm_bindgen;
     function getStringFromWasm0(ptr, len) {
         return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
     }
+
+    let cachegetInt32Memory0 = null;
+    function getInt32Memory0() {
+        if (cachegetInt32Memory0 === null || cachegetInt32Memory0.buffer !== wasm.memory.buffer) {
+            cachegetInt32Memory0 = new Int32Array(wasm.memory.buffer);
+        }
+        return cachegetInt32Memory0;
+    }
     /**
     */
     class Renderer {
@@ -43,11 +51,17 @@ let wasm_bindgen;
             return Renderer.__wrap(ret);
         }
         /**
-        * @returns {number}
+        * @returns {string}
         */
         render() {
-            var ret = wasm.renderer_render(this.ptr);
-            return ret >>> 0;
+            try {
+                wasm.renderer_render(8, this.ptr);
+                var r0 = getInt32Memory0()[8 / 4 + 0];
+                var r1 = getInt32Memory0()[8 / 4 + 1];
+                return getStringFromWasm0(r0, r1);
+            } finally {
+                wasm.__wbindgen_free(r0, r1);
+            }
         }
     }
     __exports.Renderer = Renderer;
