@@ -28,8 +28,11 @@
 
         const renderLoop = () => {
           pre.textContent = renderer.render();
-
-          requestAnimationFrame(renderLoop);
+          
+          setTimeout(function(){
+            requestAnimationFrame(renderLoop);
+          }, 500); //milliseconds
+          
         };
         requestAnimationFrame(renderLoop);
       }
